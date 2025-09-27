@@ -1,13 +1,11 @@
 package academy.devdojo.maratonajava.projetosTreino.desafioCadastro;
 
 import academy.devdojo.maratonajava.projetosTreino.desafioCadastro.exceptions.NameException;
-import academy.devdojo.maratonajava.projetosTreino.desafioCadastro.exceptions.SexoException;
 import academy.devdojo.maratonajava.projetosTreino.desafioCadastro.utils.Pet;
 
 import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -57,17 +55,14 @@ public class Main {
             switch (contador){
                 case 1:
                    if(resp.matches(regexNome)) {
-                        System.out.println(resp.matches(regexNome));
                         pet.setNome(resp);
                         break;
                    }else if(resp.trim().isEmpty()) {
                        resp = padraoSemInformacao;
                        pet.setNome(resp);
-                       System.out.println("nome else if:"+resp);
                        break;
 
                    }else{
-                        System.out.println("nome else:"+resp);
                         throw new NameException();
                     }
                 case 2:
@@ -82,7 +77,6 @@ public class Main {
                     System.out.println("Numero da casa:");
                     String numCasa = teclado.nextLine();
                     pet.setEndere(numCasa,cidade,resp);
-                    System.out.println(Arrays.toString(pet.getEndere()));
                     break;
                 case 5:
                     if (resp.matches(regexIdade)) {
@@ -119,15 +113,6 @@ public class Main {
         }
     }
 
-//    Na pergunta sobre o endereço, você deverá perguntar:
-//    Número da casa
-//            Cidade
-//    Rua
-//    Na idade e peso aproximados do pet, o usuário poderá digitar números com vírgulas ou ponto, mas somente números.
-//    Caso o usuário digite um peso maior que 60kg ou um peso menor que 0.5kg, lance uma exceção.
-//    Caso o usuário digite uma idade maior que 20 anos, lance uma exceção.
-//    Caso o usuário digite uma idade menor que 1 ano (idade em meses), transforme em 0.x anos.
-//    No campo raça o usuário não poderá usar números nem caracteres especiais.
     public static void arquivoPet(int contador,String resp, String pet){
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmm'-'");
         String horaDia = LocalDateTime.now().format(format);
