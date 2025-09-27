@@ -7,6 +7,7 @@ import academy.devdojo.maratonajava.projetosTreino.desafioCadastro.utils.Pet;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -76,8 +77,12 @@ public class Main {
                         pet.setSexo(Pet.Sexo.valueOf(resp.toUpperCase()));
                         break;
                 case 4:
-
-
+                    System.out.println("Qual a cidade?");
+                    String cidade = teclado.nextLine();
+                    System.out.println("Numero da casa:");
+                    String numCasa = teclado.nextLine();
+                    pet.setEndere(numCasa,cidade,resp);
+                    System.out.println(Arrays.toString(pet.getEndere()));
                     break;
                 case 5:
                     if (resp.matches(regexIdade)) {
@@ -126,7 +131,7 @@ public class Main {
     public static void arquivoPet(int contador,String resp, String pet){
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmm'-'");
         String horaDia = LocalDateTime.now().format(format);
-        File file = new File("C:\\Users\\masin\\OneDrive\\Documentos\\ESTUDOS\\java\\maratona-java\\src\\academy\\devdojo\\maratonajava\\projetosTreino\\desafioCadastro\\pets\\"+ horaDia + pet + ".txt");
+        File file = new File("C:\\Users\\masin\\OneDrive\\Documentos\\ESTUDOS\\desafioCadastro\\desafioCadastro\\pets"+ horaDia + pet + ".txt");
         try(FileWriter fw = new FileWriter(file,true);
             BufferedWriter bw = new BufferedWriter(fw)) {
             bw.write(contador +"-"+ resp +"\n");
@@ -137,7 +142,7 @@ public class Main {
 
 
     public static void main(String[] args) throws IOException {
-        fileFormulario = new File("C:\\Users\\masin\\OneDrive\\Documentos\\ESTUDOS\\java\\maratona-java\\src\\academy\\devdojo\\maratonajava\\projetosTreino\\desafioCadastro\\arquivos\\formulario.txt");
+        fileFormulario = new File("C:\\Users\\masin\\OneDrive\\Documentos\\ESTUDOS\\desafioCadastro\\desafioCadastro\\arquivos\\formulario.txt");
         menu();
     }
 
